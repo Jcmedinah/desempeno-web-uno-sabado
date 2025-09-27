@@ -27,9 +27,35 @@ const ganarExperiencia = (cantidadXP) =>{
     console.log(`Ganaste [${cantidadXP}] XP. Experiencia total: [${puntosExperiencia}] XP.`);
 }
 
-recibirDanio(20);
-ganarExperiencia(15);
-recibirDanio(50);
-ganarExperiencia(25);
-recibirDanio(40);
-mostrarEstadisticas();
+const simularBatalla = () => {
+    for (let i = 0; i < 3; i++) {
+        recibirDanio(30);
+        if (puntosSalud === 0) {
+            break;
+        }
+    }
+    ganarExperiencia(50);
+}
+
+function diagnosticoHeroe(){
+    if (puntosSalud > 70) {
+        console.log("Tu salud es excelente");
+    } else if (puntosSalud > 30) {
+        console.log("Estás herido, considera usar una poción");
+    } else {
+        console.log("¡Peligro! Salud crítica");
+    }
+    switch (true) {
+        case (puntosExperiencia >= 200):
+            console.log("Eres una leyenda viviente");
+            break;
+        case (puntosExperiencia >= 100):
+            console.log("Te estás convirtiendo en un guerrero respetable");
+            break;
+        default:
+            console.log("Eres un novato");
+    }
+}
+
+simularBatalla();
+diagnosticoHeroe();
